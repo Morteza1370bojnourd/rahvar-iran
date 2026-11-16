@@ -1,1 +1,137 @@
 
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#102b46">
+<title>آیین‌نامه راهور ایران</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f4f8;color:#172b40;font-family:Tahoma,Arial,sans-serif}
+header{background:linear-gradient(135deg,#102b46,#17618a);color:white;padding:28px 18px;text-align:center;border-radius:0 0 25px 25px}
+header h1{font-size:23px;margin:5px}
+header p{font-size:13px;color:#dceaf5}
+main{padding:15px;max-width:650px;margin:auto}
+.card{background:white;padding:17px;border-radius:15px;margin:12px 0;box-shadow:0 3px 12px #0000000c}
+h2{font-size:17px;color:#145477}
+button{border:0;border-radius:10px;padding:13px;background:#145477;color:white;font-family:inherit;font-size:14px;cursor:pointer}
+.menu{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.menu button{min-height:65px}
+input{width:100%;padding:14px;border:1px solid #ccd5df;border-radius:10px;font-family:inherit;font-size:15px}
+.item{padding:13px;border-bottom:1px solid #eee;line-height:2;font-size:14px}
+.small{font-size:12px;color:#718096}
+.answer{display:block;width:100%;margin:8px 0;background:#edf3f8;color:#173b55;text-align:right}
+.answer:hover{background:#d9e9f5}
+footer{text-align:center;color:#718096;font-size:12px;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<h1>🚦 آیین‌نامه راهور ایران</h1>
+<p>مرجع آموزشی قوانین و مقررات راهنمایی و رانندگی</p>
+</header>
+<main>
+<div class="card">
+<h2>جست‌وجو در مطالب</h2>
+<input id="search" placeholder="نام قانون یا موضوع را جست‌وجو کنید..." oninput="searchLaw()">
+<div id="results"></div>
+</div>
+
+<div class="card">
+<h2>دسترسی سریع</h2>
+<div class="menu">
+<button onclick="show('laws')">📚 قوانین و مقررات</button>
+<button onclick="show('signs')">🚸 تابلوهای راهنمایی</button>
+<button onclick="show('safety')">🛡️ نکات ایمنی</button>
+<button onclick="show('quiz')">📝 آزمون آزمایشی</button>
+</div>
+</div>
+
+<div class="card" id="content">
+<h2>به نرم‌افزار راهور خوش آمدید</h2>
+<p>برای مشاهده مطالب آموزشی یکی از بخش‌های بالا را انتخاب کنید.</p>
+<p class="small">نسخه آزمایشی آموزشی</p>
+</div>
+</main>
+<footer>سامانه آموزشی آیین‌نامه راهور ایران</footer>
+
+<script>
+const laws=[
+{title:"قانون و مقررات عبور و مرور",text:"رانندگان باید مقررات راهنمایی و رانندگی، علائم و فرمان‌های مأموران مجاز را رعایت کنند. متن رسمی مواد قانونی باید از آخرین نسخه معتبر بررسی شود."},
+{title:"حق تقدم",text:"در تقاطع‌ها و مسیرها، حق تقدم تابع علائم، چراغ‌ها، مقررات و شرایط محل است. راننده باید پیش از ورود به تقاطع از ایمن بودن عبور اطمینان حاصل کند."},
+{title:"سرعت مجاز",text:"راننده موظف است سرعت خود را با تابلوهای محدودیت سرعت، وضعیت راه، شرایط جوی و میزان دید هماهنگ کند."},
+{title:"کمربند ایمنی",text:"استفاده از کمربند ایمنی برای راننده و سرنشینان مطابق مقررات الزامی است."},
+{title:"توقف و پارک",text:"توقف و پارک باید در محل مجاز انجام شود و نباید موجب سد معبر یا ایجاد خطر برای سایر کاربران راه شود."},
+{title:"موتورسیکلت",text:"راننده و ترک‌نشین موتورسیکلت باید مقررات مربوط به کلاه ایمنی و سایر الزامات قانونی را رعایت کنند."}
+];
+
+function show(section){
+let c=document.getElementById("content");
+if(section==="laws"){
+c.innerHTML="<h2>📚 قوانین و مقررات</h2>"+laws.map(x=>`<div class="item"><b>${x.title}</b><br>${x.text}</div>`).join("");
+}
+if(section==="signs"){
+c.innerHTML=`<h2>🚸 تابلوهای راهنمایی و رانندگی</h2>
+<div class="item">🔴 تابلوهای بازدارنده: اعلام ممنوعیت یا محدودیت</div>
+<div class="item">🔺 تابلوهای هشداردهنده: آگاه‌سازی درباره خطرات مسیر</div>
+<div class="item">🔵 تابلوهای دستوری: اعلام دستورهای الزامی</div>
+<div class="item">🟩 تابلوهای راهنمای مسیر: ارائه اطلاعات مسیر و مقصد</div>`;
+}
+if(section==="safety"){
+c.innerHTML=`<h2>🛡️ نکات ایمنی</h2>
+<div class="item">۱. هنگام رانندگی از تلفن همراه استفاده نکنید.</div>
+<div class="item">۲. فاصله طولی ایمن را رعایت کنید.</div>
+<div class="item">۳. در شرایط بارندگی سرعت را کاهش دهید.</div>
+<div class="item">۴. هنگام خستگی و خواب‌آلودگی رانندگی نکنید.</div>
+<div class="item">۵. از کلاه ایمنی استاندارد استفاده کنید.</div>`;
+}
+if(section==="quiz") quiz();
+}
+
+function searchLaw(){
+let q=document.getElementById("search").value.trim();
+let r=document.getElementById("results");
+if(!q){r.innerHTML="";return;}
+let found=laws.filter(x=>(x.title+" "+x.text).includes(q));
+r.innerHTML=found.length?found.map(x=>`<div class="item"><b>${x.title}</b><br>${x.text}</div>`).join(""):"مطلبی پیدا نشد.";
+}
+
+const questions=[
+{q:"هنگام مشاهده چراغ قرمز چه باید کرد؟",a:["توقف کامل","افزایش سرعت","عبور با احتیاط"],correct:0},
+{q:"در هوای بارانی چه اقدامی مناسب است؟",a:["افزایش سرعت","کاهش سرعت و افزایش فاصله","ترمز ناگهانی"],correct:1},
+{q:"استفاده از کمربند ایمنی برای چیست؟",a:["زیبایی خودرو","کاهش خطر آسیب","افزایش سرعت"],correct:1},
+{q:"تابلوهای مثلثی قرمز معمولاً چه مفهومی دارند؟",a:["هشداردهنده","اطلاع‌رسانی","دستور پارک"],correct:0}
+];
+function quiz(){
+let i=0,score=0;
+function render(){
+let q=questions[i];
+let c=document.getElementById("content");
+c.innerHTML=`<h2>📝 آزمون آزمایشی</h2><p>سؤال ${i+1} از ${questions.length}</p><b>${q.q}</b><div id="answers"></div><p id="feedback"></p>`;
+q.a.forEach((a,n)=>{
+let b=document.createElement("button");
+b.className="answer";b.textContent=a;
+b.onclick=()=>{
+if(document.getElementById("answers").dataset.done)return;
+document.getElementById("answers").dataset.done="1";
+if(n===q.correct){score++;document.getElementById("feedback").textContent="✅ پاسخ صحیح";}
+else document.getElementById("feedback").textContent="❌ پاسخ صحیح: "+q.a[q.correct];
+let next=document.createElement("button");
+next.textContent=i===questions.length-1?"مشاهده نتیجه":"سؤال بعدی";
+next.onclick=()=>{
+i++;
+if(i<questions.length)render();
+else c.innerHTML=`<h2>نتیجه آزمون</h2><h1>${score} از ${questions.length}</h1><button onclick="show('quiz')">تکرار آزمون</button>`;
+};
+c.appendChild(next);
+};
+document.getElementById("answers").appendChild(b);
+});
+}
+render();
+}
+</script>
+</body>
+</html>
+
